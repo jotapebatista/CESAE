@@ -193,26 +193,76 @@ let x = 0
 
 while(x <= 1000){
     x++
-    whileNumberList.join(x+" ")
+    whileNumberList.push(x+" ")
 }
 
 console.log(whileNumberList)
 
-
-
 // 15. Crie um script que dados dois números indica se um é múltiplo do outro.
 
+const multiple1 = 2
+const multiple2 = 2
+
+function isMultiple(x1 , x2){
+    const remainder = x1 % x2 // Divisão resto 0.
+    
+    if (remainder == 0){
+        console.log(x1+" is multiple of "+x2)
+    }
+    else{
+        console.log(x1+" is not multiple of "+x2)
+    }
+}
+
+isMultiple(multiple1, multiple2)
+
 // 16. Ler um número e apresentar uma mensagem indicando se o número é par ou ímpar.
+
+const number = 6;
+const result = number % 2
+
+if (result == 0){
+    console.log("Number "+number+ " is even.")
+}
+else {
+    console.log("Number "+number+ " is odd.")
+}
 
 // 17. Ler um número positivo, verificar se tem 3 dígitos e em caso afirmativo imprimir os
 // dígitos separados por dois espaços.
 
+const positiveNumber = 1337
+
+if (positiveNumber >= 0) {
+    const splitedNumberArr = Array.from(String(positiveNumber), Number);
+    console.log(splitedNumberArr)
+}
+
 // 18. Determinar o menor de 3 valores.
+
+const numberArr = [1284 ,2279,1354]
+
+function findSmaller (nArray){
+    console.log("The smallest number is: "+Math.min(...nArray)) // ... -> Spread Operator 
+}
+
+findSmaller(numberArr)
+
 
 // 19. Crie um script que peça ao utilizador um valor de temperatura em graus Celsius e
 // converta o valor para graus Fahrenheit.
 
+let userTemp = 28
+
+function convertCelsius(userTemp){
+    fahrenheit = userTemp * 9 / 5 + 32
+    console.log(userTemp+"° Celsius | "+fahrenheit+"° Fahrenheit")
+}
+
+convertCelsius(userTemp)
+
 // 20. Considere que Fahrenheit = Celsius * 1.8 + 32
+//fahrenheit = userTemp * 1.8 + 32 (1.8 is the result of 9/5)
 
 // 21. Crie um script que peça ao utilizador um valor em Euros e calcule e apresente o
 // valor convertido para dólares, libras, reais e pesos. Procure o valor de câmbio e use

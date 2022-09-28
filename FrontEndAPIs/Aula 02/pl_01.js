@@ -1,4 +1,4 @@
-
+//PRATICA LABORATORIAL 1
 // 1.Crie uma variável que guarde o seu primeiro nome.
 
 const userName = "João"
@@ -42,13 +42,34 @@ return 0
 
 printUserInfo(person.firstName, person.lastName)
 
-// 9.Crie um método com o nome de apresentação. Essa função deve apresentar apessoa da mesma forma que se apresentou no exercício 6.
+// 9.Crie um método com o nome de apresentação. Essa função deve apresentar a pessoa da mesma forma que se apresentou no exercício 6.
+
+const personMethod = {
+    uName: "Joao",
+    lName: "Batista",
+    uAge: 27,
+    greet : function(){ console.log("Hi! My name is: "+this.uName+" "+this.lName+" and I'm "+this.uAge+" yo.")},
+}
+
+
+personMethod.greet()
+
 // 10.Na apresentação, inclua se a pessoa a apresentar-se é maior de idade ou não. Utilize uma estrutura de decisão (if)
+
+const newPersonMethod = {
+    uName: "Joao",
+    lName: "Batista",
+    uAge: 27,
+    greet : function(){ 
+        if (this.uAge>= 18){
+        console.log("Hi! My name is: "+this.uName+" "+this.lName+" and I'm "+this.uAge+" yo. Major")
+    }
+    else{
+        console.log("Hi! My name is: "+this.uName+" "+this.lName+" and I'm "+this.uAge+" yo. Minor")
+    }
+    },
+}
+newPersonMethod.greet()
 // 11.Passe essa validação para dentro de um método.
 // 12.Utilize esse método dentro da apresentação.
 // 13.Recorrendo à funçãoprompt crie uma pessoa com os dados que o utilizador fornece.
-
-
-function fullName (name, lastname){
-    return name + "" + lastname
-}
