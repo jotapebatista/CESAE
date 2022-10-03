@@ -118,23 +118,23 @@ doesItHaveFeverNew(temperature)
 // “é menor de idade”.
 
 let age = 0
-let gender = "male"
+let gender = "female"
 
 function randomFunctionName(userAge, userGender){
-    if(gender == "male" ){
-        if (age >=25){
+    if(userGender== "male" ){
+        if (userAge >=25){
             console.log("User is male and he is an Adult.")
         }
         else{
-            console.log("User is male and he is juvenile")
+            console.log("User is male and he is juvenile.")
         }
     }
-    else if(gender == "female"){
-        if (age >=25){
+    else if(userGender == "female"){
+        if (userAge >=25){
             console.log("User is female and she is an Adult.")
         }
         else{
-            console.log("User is female and she is juvenile")
+            console.log("User is female and she is juvenile.")
         }
     }
     else{
@@ -163,16 +163,16 @@ let userNumber = 3
 
 //This is a workaround to the switch case. At least it works.
 function isInRage(num, min, max){
-    return num >= min && num <= max;
+    return num >= min && num <= max
 }
 
 switch (true) {
     case isInRage(userNumber, 0 , 5):
-        console.log("Between 0 and 5");
-        break;
+        console.log("Between 0 and 5")
+        break
     default:
-        console.log("Please choose another number");
-        break;
+        console.log("Please choose another number")
+        break
 }
 
 // 13. Crie um script que apresente uma lista de valores entre 1 e 1000.
@@ -218,7 +218,7 @@ isMultiple(multiple1, multiple2)
 
 // 16. Ler um número e apresentar uma mensagem indicando se o número é par ou ímpar.
 
-const number = 6;
+const number = 6
 const result = number % 2
 
 if (result == 0){
@@ -234,20 +234,19 @@ else {
 const positiveNumber = 1337
 
 if (positiveNumber >= 0) {
-    const splitedNumberArr = Array.from(String(positiveNumber), Number);
+    const splitedNumberArr = Array.from(String(positiveNumber), Number)
     console.log(splitedNumberArr)
 }
 
 // 18. Determinar o menor de 3 valores.
 
-const numberArr = [1284 ,2279,1354]
+const numberArr = [1284, 2279 ,1354]
 
 function findSmaller (nArray){
     console.log("The smallest number is: "+Math.min(...nArray)) // ... -> Spread Operator 
 }
 
 findSmaller(numberArr)
-
 
 // 19. Crie um script que peça ao utilizador um valor de temperatura em graus Celsius e
 // converta o valor para graus Fahrenheit.
@@ -268,15 +267,135 @@ convertCelsius(userTemp)
 // valor convertido para dólares, libras, reais e pesos. Procure o valor de câmbio e use
 // o mais atual possível.
 
+let amountToConvert = 999.83
+
+function convertCurrency(amount, currency){
+    //USD Rate 1€ - 0.9802 USD
+    //GPB Rate 1€ - 0.8848 GBP
+    //BRL Rate 1€ - 5.2869 BRL
+    //MXN Rate 1€ - 19.7651 MXN
+    let result = 0
+    let final = 0
+    let resultD = 0
+
+    if (currency == "USD"){
+        result = amount * 0.9802
+        resultD = result / 1
+        final = resultD.toFixed(2)
+        return console.log(amount+"€ | "+final+"$")
+     }
+     else if (currency == "GBP" ) {
+        result = amount * 0.8848
+        resultD = result / 1
+        final = resultD.toFixed(2)
+        return console.log(amount+"€ | "+final+"$")
+     }
+     else if (currency == "BRL" ) {
+        result = amount * 5.2869
+        resultD = result / 1
+        final = resultD.toFixed(2)
+        return console.log(amount+"€ | "+final+"$")
+     }
+     else if (currency == "MXN" ) {
+        result = amount * 19.7651
+        resultD = result / 1
+        final = resultD.toFixed(2)
+        return console.log(amount+"€ | "+final+"$")
+     }
+     else{
+        return console.log ("Sorry, we can't convert such currency!")
+     }
+}
+
+convertCurrency(amountToConvert, "BRL")
+
 // 22. Dado um número inteiro positivo, verifique se este é ou não capicua. (Capicua é um
 // número que se lê de forma igual da esquerda para a direita ou da direita para a
 // esquerda. Exemplos: 212; 123454321; 123321)
 
+// console.log("Não faço ideia!")
+// Array.rever().join()
+let palindrome = 1331
+
+function checkPalindrome(pali) {
+
+    let string = pali.toString()
+    const arrayValues = string.split('')
+    const reverseArrayValues = arrayValues.reverse()  // reverse array 
+    const reverseString = reverseArrayValues.join('') // convert array to string
+
+    if(string == reverseString) {
+        console.log('It is a palindrome')
+    }
+    else {
+        console.log('It is not a palindrome')
+    }
+}
+
+checkPalindrome(palindrome);
+
 // 23. Ler um valor inteiro e apresentar todos os valores inteiros entre 0 e esse valor. A
 // listagem só deve ser apresentada se o valor introduzido for superior a 10.
+
+const insertedNumber = 11
+
+function printAllNumbers(number){
+    if (number >= 10){
+        for (i = number; i >= 0; i--){
+            console.log(i)
+        }
+    }else{
+        console.log(number)
+    }
+}
+
+printAllNumbers(insertedNumber)
 
 // 24. Pretende-se apresentar numa lista todos os números pares de um intervalo definido
 // pelo utilizador.
 
+let firstInter = 10
+let secondInter = 6
+
+function printEven(min, max){
+    if (min < max){
+        for (let i = min; i <= max; i++){ 
+        console.log("Normal order: "+ i)
+    }
+    }
+    else{
+        for (let i = min; i >= max; i--){ 
+            console.log("Reversed order: "+i)
+    }
+}
+}
+printEven(firstInter, secondInter)
+
 // 25. Descreva um algoritmo que pede ao utilizador um valor par, inferior a 100 e
 // apresenta numa lista todos os inteiros múltiplos de 5, entre 0 e esse valor.
+
+const userEvenNumber = 100
+let multipleList = []
+
+function multipleToList(arg){
+    
+    if (arg >= 0 && arg <=100){
+        if (arg % 5 == 0){
+            for (let i = 0; i <= arg; i++){
+                if (i % 5 == 0){
+                    multipleList[i] += i
+                }
+                console.log("Inside for: "+multipleList)
+                console.log(multipleList)
+            }
+        }
+        else{
+            console.log("Not multiple of 5")
+        }
+    }else{
+        console.log("Number bigger than expected.")
+    }
+        
+}
+
+multipleToList(userEvenNumber)
