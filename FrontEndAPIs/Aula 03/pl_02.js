@@ -354,7 +354,7 @@ printAllNumbers(insertedNumber)
 // 24. Pretende-se apresentar numa lista todos os números pares de um intervalo definido
 // pelo utilizador.
 
-let firstInter = 10
+let firstInter = 1
 let secondInter = 6
 
 function printEven(min, max){
@@ -374,20 +374,19 @@ printEven(firstInter, secondInter)
 // 25. Descreva um algoritmo que pede ao utilizador um valor par, inferior a 100 e
 // apresenta numa lista todos os inteiros múltiplos de 5, entre 0 e esse valor.
 
-const userEvenNumber = 100
+const userEvenNumber = 50
 let multipleList = []
 
 function multipleToList(arg){
     
     if (arg >= 0 && arg <=100){
-        if (arg % 5 == 0){
-            for (let i = 0; i <= arg; i++){
+        if (arg % 5 == 0){ 
+            for (let i = 0; i <= arg; i++){ 
                 if (i % 5 == 0){
-                    multipleList[i] += i
+                    multipleList += i+"\n"
                 }
-                console.log("Inside for: "+multipleList)
-                console.log(multipleList)
             }
+            console.log(multipleList)
         }
         else{
             console.log("Not multiple of 5")
@@ -395,7 +394,100 @@ function multipleToList(arg){
     }else{
         console.log("Number bigger than expected.")
     }
-        
 }
 
 multipleToList(userEvenNumber)
+
+//-----------------------DESAFIOS-------------------//
+
+// 1. Mostrar os primeiros N termos da sucessão de Fibonacci, onde N é definido pelo
+// utilizador. Nesta sucessão o primeiro termo é zero, o segundo termo é um e
+// qualquer um dos outros termos é igual à soma dos dois anteriores.
+
+const fibonacciN = 10
+
+function fibonacciSequence(arg){
+
+    let n1 = 0, n2 = 1, term
+
+    for (let i = 1; i <= arg; i++) {
+        console.log(n1)
+        term = n1 + n2
+        n1 = n2
+        n2 = term
+    }
+    //console.log(term)
+}
+
+fibonacciSequence(fibonacciN)
+// 2. Dada uma data, dia, mês e ano, determinar quantos dias faltam para o fim do mês.
+// Diz-se que um ano é bissexto se for divisível por 400 ou for divisível por 4 e não por 100.
+
+const daysToTheEnd = {
+    day: 04,
+    month: "february",
+    year: 2021
+}
+
+function parseDate(date){
+    switch(date.month){
+        case 'january':
+            newDate = 31 - date.day
+            console.log(newDate+ " days until the end of "+date.month)
+            break
+        case 'february':
+            if ((0 == date.year % 4) && (0 != date.year % 100) || (0 == date.year % 400)){
+                newDate = 29 - date.day
+                console.log(newDate+ " days until the end of "+date.month)
+                break
+            }else{
+                newDate = 28 - date.day
+                console.log(newDate+ " days until the end of "+date.month)
+                break
+            }
+        case 'march':
+            newDate = 31 - date.day
+            console.log(newDate+ " days until the end of "+date.month)
+            break
+        case 'april':
+            newDate = 30 - date.day
+            console.log(newDate+ " days until the end of "+date.month)
+            break
+        case 'may':
+            newDate = 31 - date.day
+            console.log(newDate+ " days until the end of "+date.month)
+            break
+        case 'june':
+            newDate = 30 - date.day
+            console.log(newDate+ " days until the end of "+date.month)
+            break
+        case 'july':
+            newDate = 31 - date.day
+            console.log(newDate+ " days until the end of "+date.month)
+            break
+        case 'august':
+            newDate = 31 - date.day
+            console.log(newDate+ " days until the end of "+date.month)
+            break
+        case 'september':
+            newDate = 31 - date.day
+            console.log(newDate+ " days until the end of "+date.month)
+            break
+        case 'october':
+            newDate = 31 - date.day
+            console.log(newDate+ " days until the end of "+date.month)
+            break
+        case 'november':
+            newDate = 30 - date.day
+            console.log(newDate+ " days until the end of "+date.month)
+            break
+        case 'december':
+            newDate = 31 - date.day
+            console.log(newDate+ " days until the end of "+date.month)
+            break
+        default:
+            console.log("Sorry, we still don't have that month");
+    }
+}
+
+parseDate(daysToTheEnd)
