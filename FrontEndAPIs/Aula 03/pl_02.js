@@ -2,15 +2,15 @@
 const firstName = "João"
 const lastName = "Batista"
 
-function printAndCount (arg1, arg2){
-    console.log("The name " + arg1 + " has "+arg1.length+" letters and the last name " + arg2 + " has " + arg2.length + " letters\n")
+function printAndCount(arg1, arg2) {
+    console.log("The name " + arg1 + " has " + arg1.length + " letters and the last name " + arg2 + " has " + arg2.length + " letters\n")
     return 0
 }
 printAndCount(firstName, lastName)
 
 // 2 - Crie um script baseado no anterior em que apresente o nome todo em maiúsculas eo sobrenome todo em minúsculas (deve usar funções).
-function toUpperCase (userName, userLastName){
-    console.log ("First name "+userName.toUpperCase()+" and last name "+userLastName.toUpperCase()+".")
+function toUpperCase(userName, userLastName) {
+    console.log("First name " + userName.toUpperCase() + " and last name " + userLastName.toUpperCase() + ".")
     return 0
 }
 toUpperCase(firstName, lastName)
@@ -22,13 +22,13 @@ toUpperCase(firstName, lastName)
 
 const str = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi eius praesentium ipsum error aut debitis impedit ab provident quos tenetur"
 
-function findAndReplaceFirst(str){
+function findAndReplaceFirst(str) {
     let findString = str.replace("a", "AAA")
     //console.log(findString)
     return findString
 }
 
-function findAndReplaceLast (str){
+function findAndReplaceLast(str) {
     const lastIndexD = str.lastIndexOf('b')
     const replacement = 'BBB'
     const replaced = str.substring(0, lastIndexD) + replacement + str.substring(lastIndexD + 1)
@@ -47,12 +47,12 @@ console.log(findAndReplaceLast(str))
 let n1 = 12
 let n2 = 21
 
-console.log("Addition: " + n1 +" + " + n2 + " = "+(n1+n2))
-console.log("Subtraction: " + n1 +" - " + n2 + " = "+(n1-n2))
-console.log("Multiplication: " + n1 +" * " + n2 + " = "+(n1*n2))
-console.log("Division: " + n1 +" / " + n2 + " = "+(n1/n2))
-console.log("Modulus: " + n1 +" % " + n2 + " = "+(n1%n2))
-console.log("Exponentiation: " + n1 +" / " + n2 + " = "+(n1**n2))
+console.log("Addition: " + n1 + " + " + n2 + " = " + (n1 + n2))
+console.log("Subtraction: " + n1 + " - " + n2 + " = " + (n1 - n2))
+console.log("Multiplication: " + n1 + " * " + n2 + " = " + (n1 * n2))
+console.log("Division: " + n1 + " / " + n2 + " = " + (n1 / n2))
+console.log("Modulus: " + n1 + " % " + n2 + " = " + (n1 % n2))
+console.log("Exponentiation: " + n1 + " / " + n2 + " = " + (n1 ** n2))
 
 // 5 - Num novo script escreva “console.log(Math.random());” verifique o resultado.Recarregue a página e verifique se há diferença. 
 // Escreva uma linha/parágrafo sobreo resultado da operação executada.
@@ -61,18 +61,18 @@ console.log(Math.random()) //The value changes everytime.
 
 // 6 - Num novo script gere e apresente um valor aleatório entre 1 e 10.
 
-console.log("Random number: "+Math.floor((Math.random()*10)))
+console.log("Random number: " + Math.floor((Math.random() * 10)))
 
 // 7 - Num novo script crie duas variáveis n1 e n2 e atribua valores decimais às mesmas.Apresenta os valores originais, 
 // os valores arredondados de forma normal,arredondados para baixo e arredondados para cima (utilizando funções).
 
-nmb1 = 13.50
-nmb2 = 73.90
+nmb1 = 1.2
+nmb2 = 1.7
 
-function roundNumbers (number1, number2){
-    console.log("First Value: "+number1+ " | Second Value: "+ number2)
-    console.log("Rounded UP First Value: "+Math.round(number1)+ " | Rounded UP Second Value: "+ Math.round(number2))
-    console.log("Rounded UP First Value: "+Math.floor(number1)+ " | Rounded UP Second Value: "+ Math.floor(number2))
+function roundNumbers(number1, number2) {
+    console.log("First Value: " + number1 + " | Second Value: " + number2)
+    console.log("Rounded UP First Value: " + Math.round(number1) + " | Rounded UP Second Value: " + Math.round(number2))
+    console.log("Rounded UP First Value: " + Math.floor(number1) + " | Rounded UP Second Value: " + Math.floor(number2))
     return 0
 }
 
@@ -85,13 +85,14 @@ roundNumbers(nmb1, nmb2)
 
 let temperature = 37.5
 
-function doesItHaveFever (varFever){
-    if (varFever >= 37.5){
+function doesItHaveFever(varFever) {
+    if (varFever >= 37.5) {
         console.log("Has fever!")
     }
-    else{
+    else {
         return console.log("Is Healthy!")
     }
+    console.log(varFever >= 37.5 ? "Fever" : "Healthy")
 }
 
 doesItHaveFever(temperature)
@@ -99,11 +100,11 @@ doesItHaveFever(temperature)
 // 9. Baseado no script anterior acrescente uma outra condição, caso a temperatura seja
 // inferior a 35 deve apresentar a mensagem “Temperatura muito baixa”.
 
-function doesItHaveFeverNew (varFever) {
-    if (varFever <= 35){
+function doesItHaveFeverNew(varFever) {
+    if (varFever <= 35) {
         console.log("You're temperature is to low.")
     }
-    else if (varFever>= 37.5) {
+    else if (varFever >= 37.5) {
         console.log("You're temperature is to high!")
     } else {
         console.log("You're fine! Let's get things done!")
@@ -120,24 +121,24 @@ doesItHaveFeverNew(temperature)
 let age = 0
 let gender = "female"
 
-function randomFunctionName(userAge, userGender){
-    if(userGender== "male" ){
-        if (userAge >=25){
+function randomFunctionName(userAge, userGender) {
+    if (userGender == "male") {
+        if (userAge >= 25) {
             console.log("User is male and he is an Adult.")
         }
-        else{
+        else {
             console.log("User is male and he is juvenile.")
         }
     }
-    else if(userGender == "female"){
-        if (userAge >=25){
+    else if (userGender == "female") {
+        if (userAge >= 25) {
             console.log("User is female and she is an Adult.")
         }
-        else{
+        else {
             console.log("User is female and she is juvenile.")
         }
     }
-    else{
+    else {
         console.log(`User is something else. Don't even bother asking "IT" age.`)
     }
 }
@@ -150,10 +151,10 @@ randomFunctionName(age, gender)
 
 let numberVar = 2
 
-if (numberVar >= 0 && numberVar <= 5){
+if (numberVar >= 0 && numberVar <= 5) {
     console.log(`Inserted number is ${numberVar}.`)
 }
-else{
+else {
     console.log("Please insert a different number!")
 }
 
@@ -162,12 +163,12 @@ else{
 let userNumber = 3
 
 //This is a workaround to the switch case. At least it works.
-function isInRage(num, min, max){
+function isInRage(num, min, max) {
     return num >= min && num <= max
 }
 
 switch (true) {
-    case isInRage(userNumber, 0 , 5):
+    case isInRage(userNumber, 0, 5):
         console.log("Between 0 and 5")
         break
     default:
@@ -179,8 +180,8 @@ switch (true) {
 
 let numberList = []
 
-for (i = 0; i<=1000; i++){
-    numberList += i+" "
+for (i = 0; i <= 1000; i++) {
+    numberList += i + " "
 }
 
 console.log(numberList)
@@ -191,9 +192,9 @@ console.log(numberList)
 let whileNumberList = []
 let x = 0
 
-while(x <= 1000){
+while (x <= 1000) {
     x++
-    whileNumberList.push(x+" ")
+    whileNumberList.push(x + " ")
 }
 
 console.log(whileNumberList)
@@ -203,14 +204,14 @@ console.log(whileNumberList)
 const multiple1 = 2
 const multiple2 = 2
 
-function isMultiple(x1 , x2){
+function isMultiple(x1, x2) {
     const remainder = x1 % x2 // Divisão resto 0.
-    
-    if (remainder == 0){
-        console.log(x1+" is multiple of "+x2)
+
+    if (remainder == 0) {
+        console.log(x1 + " is multiple of " + x2)
     }
-    else{
-        console.log(x1+" is not multiple of "+x2)
+    else {
+        console.log(x1 + " is not multiple of " + x2)
     }
 }
 
@@ -221,11 +222,11 @@ isMultiple(multiple1, multiple2)
 const number = 6
 const result = number % 2
 
-if (result == 0){
-    console.log("Number "+number+ " is even.")
+if (result == 0) {
+    console.log("Number " + number + " is even.")
 }
 else {
-    console.log("Number "+number+ " is odd.")
+    console.log("Number " + number + " is odd.")
 }
 
 // 17. Ler um número positivo, verificar se tem 3 dígitos e em caso afirmativo imprimir os
@@ -240,10 +241,10 @@ if (positiveNumber >= 0) {
 
 // 18. Determinar o menor de 3 valores.
 
-const numberArr = [1284, 2279 ,1354]
+const numberArr = [1284, 2279, 1354]
 
-function findSmaller (nArray){
-    console.log("The smallest number is: "+Math.min(...nArray)) // ... -> Spread Operator 
+function findSmaller(nArray) {
+    console.log("The smallest number is: " + Math.min(...nArray)) // ... -> Spread Operator 
 }
 
 findSmaller(numberArr)
@@ -253,9 +254,9 @@ findSmaller(numberArr)
 
 let userTemp = 28
 
-function convertCelsius(userTemp){
+function convertCelsius(userTemp) {
     fahrenheit = userTemp * 9 / 5 + 32
-    console.log(userTemp+"° Celsius | "+fahrenheit+"° Fahrenheit")
+    console.log(userTemp + "° Celsius | " + fahrenheit + "° Fahrenheit")
 }
 
 convertCelsius(userTemp)
@@ -269,7 +270,7 @@ convertCelsius(userTemp)
 
 let amountToConvert = 999.83
 
-function convertCurrency(amount, currency){
+function convertCurrency(amount, currency) {
     //USD Rate 1€ - 0.9802 USD
     //GPB Rate 1€ - 0.8848 GBP
     //BRL Rate 1€ - 5.2869 BRL
@@ -278,33 +279,33 @@ function convertCurrency(amount, currency){
     let final = 0
     let resultD = 0
 
-    if (currency == "USD"){
+    if (currency == "USD") {
         result = amount * 0.9802
         resultD = result / 1
         final = resultD.toFixed(2)
-        return console.log(amount+"€ | "+final+"$")
-     }
-     else if (currency == "GBP" ) {
+        return console.log(amount + "€ | " + final + "$")
+    }
+    else if (currency == "GBP") {
         result = amount * 0.8848
         resultD = result / 1
         final = resultD.toFixed(2)
-        return console.log(amount+"€ | "+final+"$")
-     }
-     else if (currency == "BRL" ) {
+        return console.log(amount + "€ | " + final + "$")
+    }
+    else if (currency == "BRL") {
         result = amount * 5.2869
         resultD = result / 1
         final = resultD.toFixed(2)
-        return console.log(amount+"€ | "+final+"$")
-     }
-     else if (currency == "MXN" ) {
+        return console.log(amount + "€ | " + final + "$")
+    }
+    else if (currency == "MXN") {
         result = amount * 19.7651
         resultD = result / 1
         final = resultD.toFixed(2)
-        return console.log(amount+"€ | "+final+"$")
-     }
-     else{
-        return console.log ("Sorry, we can't convert such currency!")
-     }
+        return console.log(amount + "€ | " + final + "$")
+    }
+    else {
+        return console.log("Sorry, we can't convert such currency!")
+    }
 }
 
 convertCurrency(amountToConvert, "BRL")
@@ -324,7 +325,7 @@ function checkPalindrome(pali) {
     const reverseArrayValues = arrayValues.reverse()  // reverse array 
     const reverseString = reverseArrayValues.join('') // convert array to string
 
-    if(string == reverseString) {
+    if (string == reverseString) {
         console.log('It is a palindrome')
     }
     else {
@@ -339,12 +340,12 @@ checkPalindrome(palindrome);
 
 const insertedNumber = 11
 
-function printAllNumbers(number){
-    if (number >= 10){
-        for (i = number; i >= 0; i--){
+function printAllNumbers(number) {
+    if (number >= 10) {
+        for (i = number; i >= 0; i--) {
             console.log(i)
         }
-    }else{
+    } else {
         console.log(number)
     }
 }
@@ -357,17 +358,17 @@ printAllNumbers(insertedNumber)
 let firstInter = 1
 let secondInter = 6
 
-function printEven(min, max){
-    if (min < max){
-        for (let i = min; i <= max; i++){ 
-        console.log("Normal order: "+ i)
+function printEven(min, max) {
+    if (min < max) {
+        for (let i = min; i <= max; i++) {
+            console.log("Normal order: " + i)
+        }
     }
+    else {
+        for (let i = min; i >= max; i--) {
+            console.log("Reversed order: " + i)
+        }
     }
-    else{
-        for (let i = min; i >= max; i--){ 
-            console.log("Reversed order: "+i)
-    }
-}
 }
 printEven(firstInter, secondInter)
 
@@ -377,21 +378,21 @@ printEven(firstInter, secondInter)
 const userEvenNumber = 50
 let multipleList = []
 
-function multipleToList(arg){
-    
-    if (arg >= 0 && arg <=100){
-        if (arg % 5 == 0){ 
-            for (let i = 0; i <= arg; i++){ 
-                if (i % 5 == 0){
-                    multipleList += i+"\n"
+function multipleToList(arg) {
+
+    if (arg >= 0 && arg <= 100) {
+        if (arg % 5 == 0) {
+            for (let i = 0; i <= arg; i++) {
+                if (i % 5 == 0) {
+                    multipleList += i + "\n"
                 }
             }
             console.log(multipleList)
         }
-        else{
+        else {
             console.log("Not multiple of 5")
         }
-    }else{
+    } else {
         console.log("Number bigger than expected.")
     }
 }
@@ -406,7 +407,7 @@ multipleToList(userEvenNumber)
 
 const fibonacciN = 10
 
-function fibonacciSequence(arg){
+function fibonacciSequence(arg) {
 
     let n1 = 0, n2 = 1, term
 
@@ -429,61 +430,61 @@ const daysToTheEnd = {
     year: 2021
 }
 
-function parseDate(date){
-    switch(date.month){
+function parseDate(date) {
+    switch (date.month) {
         case 'january':
             newDate = 31 - date.day
-            console.log(newDate+ " days until the end of "+date.month)
+            console.log(newDate + " days until the end of " + date.month)
             break
         case 'february':
-            if ((0 == date.year % 4) && (0 != date.year % 100) || (0 == date.year % 400)){
+            if ((0 == date.year % 4) && (0 != date.year % 100) || (0 == date.year % 400)) {
                 newDate = 29 - date.day
-                console.log(newDate+ " days until the end of "+date.month)
+                console.log(newDate + " days until the end of " + date.month)
                 break
-            }else{
+            } else {
                 newDate = 28 - date.day
-                console.log(newDate+ " days until the end of "+date.month)
+                console.log(newDate + " days until the end of " + date.month)
                 break
             }
         case 'march':
             newDate = 31 - date.day
-            console.log(newDate+ " days until the end of "+date.month)
+            console.log(newDate + " days until the end of " + date.month)
             break
         case 'april':
             newDate = 30 - date.day
-            console.log(newDate+ " days until the end of "+date.month)
+            console.log(newDate + " days until the end of " + date.month)
             break
         case 'may':
             newDate = 31 - date.day
-            console.log(newDate+ " days until the end of "+date.month)
+            console.log(newDate + " days until the end of " + date.month)
             break
         case 'june':
             newDate = 30 - date.day
-            console.log(newDate+ " days until the end of "+date.month)
+            console.log(newDate + " days until the end of " + date.month)
             break
         case 'july':
             newDate = 31 - date.day
-            console.log(newDate+ " days until the end of "+date.month)
+            console.log(newDate + " days until the end of " + date.month)
             break
         case 'august':
             newDate = 31 - date.day
-            console.log(newDate+ " days until the end of "+date.month)
+            console.log(newDate + " days until the end of " + date.month)
             break
         case 'september':
             newDate = 31 - date.day
-            console.log(newDate+ " days until the end of "+date.month)
+            console.log(newDate + " days until the end of " + date.month)
             break
         case 'october':
             newDate = 31 - date.day
-            console.log(newDate+ " days until the end of "+date.month)
+            console.log(newDate + " days until the end of " + date.month)
             break
         case 'november':
             newDate = 30 - date.day
-            console.log(newDate+ " days until the end of "+date.month)
+            console.log(newDate + " days until the end of " + date.month)
             break
         case 'december':
             newDate = 31 - date.day
-            console.log(newDate+ " days until the end of "+date.month)
+            console.log(newDate + " days until the end of " + date.month)
             break
         default:
             console.log("Sorry, we still don't have that month");
