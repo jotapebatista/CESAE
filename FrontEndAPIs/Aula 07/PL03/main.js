@@ -22,9 +22,20 @@ const personList = [
     new User("Ana", "ana@mail.com", 25, 1.76, "Portuguese"),
 ]
 
-function randomName(items) {
-    const userInfo = items[Math.floor(Math.random() * items.length)]
-    return userInfo
-}
+//console.log(personList)
 
-console.log(randomName(personList))
+
+const userToWin = new randomWinner(personList)
+userToWin.drawUser()
+
+
+// function getRandomProperty(obj) {
+//     const keys = Object.keys(obj)
+//     result = keys[Math.floor(Math.random() * keys.length)]
+//     return obj[result]+result
+//   }
+
+
+
+// console.log(getRandomProperty(personList))
+// alert(getRandomProperty(personList))
