@@ -1,9 +1,10 @@
 let userList = []
+let idUser = 0
 
 //DOM
 //Query Selectors
-const formHandler = document.querySelector('form')
-const drawTable = document.querySelector('table')
+let formHandler = document.querySelector('form')
+let userTable = document.querySelector('table')
 
 //End Query Selectors
 
@@ -11,19 +12,21 @@ const drawTable = document.querySelector('table')
 
 formHandler.onsubmit = (event) => {
     event.preventDefault() //Blocks Form submission
-    const formData = new FormData(formHandler)
+    idUser +=1
+    let formData = new FormData(formHandler)
 
-    const formDataObj = {};
+
+    let formDataObj = {}
     formData.forEach((value, key) => (formDataObj[key] = value))
     
-
     // const entries = Object.fromEntries(formData) This formula works as the one above.
     // console.log(entries)
 
     userList.push(formDataObj)
-    const newUser = new User(userList[0].userFirstName, userList[0].userLastName, userList[0].userEmail, userList[0].userPassword)
-    console.log(newUser)
-    drawUserTable(newUser)
+    let newUser = new User (formDataObj.userFirstName, formDataObj.userLastName, formDataObj.userEmail, formDataObj.userPassword)
+    //let newUser = new User(userList[0].userFirstName, userList[0].userLastName, userList[0].userEmail, userList[0].userPassword)
+    //console.log(newUser)
+    drawUserTable(newUser, idUser)
     formHandler.reset()
     formHandler.focus()
 
@@ -31,35 +34,39 @@ formHandler.onsubmit = (event) => {
 
 //End Form handler
 
-function drawUserTable(newUser) {
-    const objKeys = Object.keys(newUser)
-    const objValues = Object.values(newUser)
-    objKeys.forEach((keys) => console.log(keys))
-    // TODO: Adicionar condicionante para criar tabela apenas na primeira iteração (table vazias)
-    //generateTableHead(drawTable, objKeys) // TODO: - Beautify valores escritos na Table Header
-    generateTable(drawTable, objValues)
-}
+function drawUserTable(newUser, rowID) {
+    //let objKeys = Object.keys(newUser)
+    let objValues = Object.values(newUser)
+    //objKeys.forEach((keys) => console.log(keys))
 
-function generateTableHead(table, data) {
-    let thead = table.createTHead()
-    let row = thead.insertRow()
-    for (let key of data) {
-        let th = document.createElement("th")
-        let text = document.createTextNode(key)
-        th.appendChild(text)
-        row.appendChild(th)
-    }
-}
-
-function generateTable(table, data) {
     let row = table.insertRow()
-    for (element in data) {
+    let iD = row.insertCell()
+    iddd = document.createTextNode(rowID)
+    iD.appendChild(iddd)
+    for (element in objValues) {
         let cell = row.insertCell()
-        let text = document.createTextNode(data[element])
-        console.log(element)
+        let text = document.createTextNode(objValues[element])
         cell.appendChild(text)
     }
 }
 
-//END DOM
+userTable.addEventListener('click', userPresents)
 
+function userPresents(){
+    console.log(userTable)
+    
+}
+
+const createClickHandler = (row) => {
+    return () => {
+      const [cell] = row.getElementsByTagName("td");
+      console.log(cell)
+      const id = cell.innerHTML;
+      console.log(id);
+    };
+  };
+  
+  const table = document.querySelector("table");
+  for (const currentRow of table.rows) {
+    currentRow.onclick = createClickHandler(currentRow);
+  }
