@@ -1,33 +1,24 @@
 class User {
-  userFirstName
-  userLastName
-  userEmail
-  userPassword
+  #userName
+  #userAge
+  #userHeight
+  #userNationality
+  #userEmail
  
-  constructor(userFirstName, userLastName, userEmail, userPassword) {
-    this.userFirstName = userFirstName
-    this.userLastName = userLastName
-    this.userEmail = userEmail
-    this.userPassword = userPassword
+  constructor(userName, userAge, userHeight, userNationality, userEmail) {
+    this.#userName = userName
+    this.#userAge = userAge
+    this.#userHeight = userHeight
+    this.#userNationality = userNationality
+    this.#userEmail = userEmail
   }
 
-  get userFirstName() {
-    return this.userFirstName
-  }
-
-  get userLastName() {
-    return this.userLastName
+  toString(){
+    return `${this.#userName} - ${this.#userAge} - ${this.#userHeight} - ${this.#userNationality} - ${this.#userEmail}`
   }
   
-  get email() {
-    return this.email
-  }
-  get password() {
-    return this.userPassword
-  }
-
   userPresentation(){
-    console.log(`Howdy! My name is ${this.userFirstName} ${this.userLastName}. My email is ${this.userEmail}`)
+    alert(`Howdy! My name is ${this.#userName}. I'm ${this.#userAge} yo, ${this.#userHeight} tall, and I'm ${this.#userNationality}. You can reach me @ ${this.#userEmail}`)
   }
 
 }
