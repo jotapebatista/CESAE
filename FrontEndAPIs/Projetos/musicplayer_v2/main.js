@@ -2,32 +2,53 @@ let playState = false
 let muteState = false
 let volumeLevel = 1
 let firstTimePlaying = true
-coverState = false
 
 const audioPlayerElement = document.querySelector('.audio-player')
 const audioPlayer = document.querySelector('audio')
 const audioCover = audioPlayerElement.querySelector('.audio-cover')
-const volumeBar = audioPlayerElement.querySelector('.progressbar')
+const progressBar = audioPlayerElement.querySelectorAll('.progressbar')
 const audiInfo = audioPlayerElement.querySelector('.audio-info')
 const playBtn = audioPlayerElement.querySelector('.btn-play')
 const pauseBtn = audioPlayerElement.querySelector('.btn-pause')
 const muteBtn = audioPlayerElement.querySelectorAll('button')
 const prevBtn = audioPlayerElement.querySelector('.btn-previous')
 const nextBtn = audioPlayerElement.querySelector('.btn-next')
-const timeTracking = document.querySelector('div.track-progress')
+const trackTimeProgress = audioPlayerElement.querySelector('.track-time-progress')
+const volumeLevelBar = progressBar[0].firstElementChild // Volume level bar ONLY (Html Element)
+const trackProgressBar = progressBar[1].firstElementChild // Track progress bar ONLY (Html Element)
 
+//Initialize volume at 100%.
+volumeLevelBar.style.width = '100%'
+
+//Load a random music from the list on window load.
+addEventListener('load', selectMusicFromList)
+
+//Controls the play button event
+playBtn.addEventListener('click', () => {
+    togglePlayState(true)
+    audioPlayer.play()
+})
+//Controls the pause button event
+pauseBtn.addEventListener('click', () => {
+    togglePlayState(false)
+    audioPlayer.pause()
+})
+
+//Controls the next button event
 nextBtn.addEventListener('click', () => {
     selectMusicFromList()
-    playState = true
-    //audioPlayer.currentTime = audioPlayer.currentTime + 1
-})
-prevBtn.addEventListener('click', () => {
-    selectMusicFromList()
-    playState = true
-    //audioPlayer.currentTime = audioPlayer.currentTime - 1
-    //audioPlayer.currentTime = audioPlayer.currentTime + 1
+    togglePlayState(false)
+    resetProgressBars()
 })
 
+//Controls the previous button event
+prevBtn.addEventListener('click', () => {
+    selectMusicFromList()
+    togglePlayState(false)
+    resetProgressBars()
+})
+
+//Controls the mute button event
 muteBtn[0].addEventListener('click', (ev) => {
     muteState = !muteState
     muteBtn[0].classList.add('hidden')
@@ -35,6 +56,7 @@ muteBtn[0].addEventListener('click', (ev) => {
     toggleMuteState()
 })
 
+//Controls the mute button event
 muteBtn[1].addEventListener('click', (ev) => {
     muteState = !muteState
     muteBtn[0].classList.remove('hidden')
@@ -42,85 +64,67 @@ muteBtn[1].addEventListener('click', (ev) => {
     toggleMuteState()
 })
 
+//Controls volume wiht the user click hover the progress bar
+progressBar[0].addEventListener('click', (ev) => {
+    //Change the muted state if pressed in the progress bar.
+    muteState =! muteState
+    muteBtn[0].classList.remove('hidden')
+    muteBtn[1].classList.add('hidden')
+    let rect = ev.target.getBoundingClientRect()
+
+    parsedClick = 100 * ((ev.clientX - rect.left) / (rect.right - rect.left))
+
+    volumeLevelBar.style.width = `${parsedClick}%`
+    volumeLevel = (parsedClick.toFixed(0) / 100).toFixed(0)
+    console.log(volumeLevel)
+})
+
+//Toggles audio muted state
 function toggleMuteState() {
+    console.log(volumeLevel)
     if (muteState === false) {
         audioPlayer.volume = volumeLevel
         width = volumeLevel * 100
-        pBar[0].style.width = `${width}%`
+        volumeLevelBar.style.width = `${width}%`
         audioPlayer.volume = volumeLevel
 
     } else {
         audioPlayer.volume = 0
-        pBar[0].style.width = ''
+        volumeLevelBar.style.width = ''
     }
 }
 
-//Initialize volume at 100%.
-let pBar = volumeBar.children
-pBar[0].style.width = '100%'
+//Toggles play state
+function togglePlayState(playState = !playState) {
 
-playBtn.addEventListener('click', togglePlayState)
-pauseBtn.addEventListener('click', togglePlayState)
-addEventListener('load', selectMusicFromList)
-
-
-//Control volume wihtin the user click
-volumeBar.addEventListener('click', (ev) => {
-
-    let rect = ev.target.getBoundingClientRect()
-    let x = ev.clientX - rect.left //x position within the element.
-
-    if (x >= 0 && x <= 24) {
-        pBar[0].style.width = '20%'
-        audioPlayer.volume = 0.2
-        volumeLevel = 0.2
-        muteBtn[0].classList.remove('hidden')
-        muteBtn[1].classList.add('hidden')
-    } else if (x >= 25 && x <= 48) {
-        audioPlayer.volume = 0.4
-        pBar[0].style.width = '40%'
-        volumeLevel = 0.4
-        muteBtn[0].classList.remove('hidden')
-        muteBtn[1].classList.add('hidden')
-    } else if (x >= 49 && x <= 73) {
-        audioPlayer.volume = 0.6
-        pBar[0].style.width = '60%'
-        volumeLevel = 0.6
-        muteBtn[0].classList.remove('hidden')
-        muteBtn[1].classList.add('hidden')
+    if (playState === true) {
+        playBtn.classList.add('hidden')
+        pauseBtn.classList.remove('hidden')
     }
-    else if (x >= 74 && x <= 96) {
-        audioPlayer.volume = 0.8
-        pBar[0].style.width = '80%'
-        volumeLevel = 0.8
-        muteBtn[0].classList.remove('hidden')
-        muteBtn[1].classList.add('hidden')
+    else {
+        playBtn.classList.remove('hidden')
+        pauseBtn.classList.add('hidden')
     }
-    else if (x >= 97 && x <= 120) {
-        audioPlayer.volume = 1
-        pBar[0].style.width = '100%'
-        volumeLevel = 1
-        muteBtn[0].classList.remove('hidden')
-        muteBtn[1].classList.add('hidden')
-    }
-})
-
-function togglePlayState() {
-    playState = !playState
-    //Switch between play/pause button
-    playBtn.classList.toggle('hidden')
-    pauseBtn.classList.toggle('hidden')
-
-    
-    playState ? audioPlayer.play() : audioPlayer.pause()
-
 }
 
-function coverState(){
-    coverState =! coverState
-    playState ? audioCover.classList.remove('paused') : audioCover.classList.add('paused')
+//Updates over time the music/track progress
+audioPlayer.ontimeupdate = () => {
+    trackProgressBar.style.width = `${audioPlayer.currentTime}%`
+    trackTimeProgress.textContent = `${audioPlayer.currentTime.toFixed(1)} - ${audioPlayer.duration.toFixed(1)}`
 }
 
+//Toggles the rotation of the track cover
+function coverSetState() {
+    return playState ? audioCover.classList.remove('paused') : audioCover.classList.add('paused')
+}
+
+//Resets the audio progress bar
+function resetProgressBars() {
+    trackProgressBar.style.width = '0%' //Time div reset width.
+    trackTimeProgress.textContent = '0:00 - 0:00' //Audio Time div reset
+}
+
+//Randomly selects a music from the list
 function selectMusicFromList() {
     let item = audioList[Math.floor(Math.random() * audioList.length)]
     audiInfo.childNodes[1].textContent = item.getName
@@ -128,13 +132,5 @@ function selectMusicFromList() {
     audioCover.style.backgroundImage = `url(${item.getCover})`
     audioPlayer.src = item.getSongURL
     audioPlayer.load()
-    
-   
-}
-
-audioPlayer.ontimeupdate = () => {
-    const timeProgress = audioPlayerElement.querySelectorAll('.progressbar')
-    timeProgress[1].firstElementChild.style.width = `${audioPlayer.currentTime}%`
-    timeTracking.innerHTML = `${audioPlayer.currentTime.toFixed(1)} - ${audioPlayer.duration.toFixed(1)}`
-
+    return [item.getName, item.getArtist, item.getCover, item.getCover]
 }
