@@ -1,7 +1,6 @@
 let playState = false
 let muteState = false
 let volumeLevel = 1
-let firstTimePlaying = true
 
 const audioPlayerElement = document.querySelector('.audio-player')
 const audioPlayer = document.querySelector('audio')
@@ -49,62 +48,77 @@ prevBtn.addEventListener('click', () => {
 })
 
 //Controls the mute button event
-muteBtn[0].addEventListener('click', (ev) => {
+muteBtn[0].addEventListener('click', () => {
     muteState = !muteState
-    muteBtn[0].classList.add('hidden')
-    muteBtn[1].classList.remove('hidden')
     toggleMuteState()
 })
 
 //Controls the mute button event
-muteBtn[1].addEventListener('click', (ev) => {
+muteBtn[1].addEventListener('click', () => {
     muteState = !muteState
-    muteBtn[0].classList.remove('hidden')
-    muteBtn[1].classList.add('hidden')
     toggleMuteState()
 })
 
 //Controls volume wiht the user click hover the progress bar
-progressBar[0].addEventListener('click', (ev) => {
-    //Change the muted state if pressed in the progress bar.
-    muteState =! muteState
-    muteBtn[0].classList.remove('hidden')
-    muteBtn[1].classList.add('hidden')
-    let rect = ev.target.getBoundingClientRect()
-
+progressBar[0].addEventListener('click', (ev) => {    
+    let rect = ev.target.parentElement.getBoundingClientRect()
     parsedClick = 100 * ((ev.clientX - rect.left) / (rect.right - rect.left))
-
-    volumeLevelBar.style.width = `${parsedClick}%`
-    volumeLevel = (parsedClick.toFixed(0) / 100).toFixed(0)
-    console.log(volumeLevel)
+    volumeLevel = (parsedClick.toFixed(1) / 100).toFixed(1)
+    audioPlayer.volume = volumeLevel
+   
 })
+
+// Control volume with mousewheel FIXME: 
+progressBar[0].addEventListener('wheel', (ev) =>{
+
+    if (ev.wheelDelta < 0 && audioPlayer.volume > 0.1){ // On Scroll Down
+        volumeLevel = volumeLevel - 0.1
+        audioPlayer.volume-=0.1
+    // }else{
+    //     toggleMuteState()
+    }
+    if(ev.wheelDelta > 0 && audioPlayer.volume < 1){
+        volumeLevel = volumeLevel + 0.1
+        audioPlayer.volume+=0.1
+    }
+
+});
+
+audioPlayer.onvolumechange = () => {
+    console.log(audioPlayer.volume)
+    volumeLevelBar.style.width = `${audioPlayer.volume*100}%`
+    //progressBar.style.maxWidth = '100%'
+}
 
 //Toggles audio muted state
 function toggleMuteState() {
-    console.log(volumeLevel)
     if (muteState === false) {
         audioPlayer.volume = volumeLevel
         width = volumeLevel * 100
-        volumeLevelBar.style.width = `${width}%`
-        audioPlayer.volume = volumeLevel
-
+        muteBtn[0].classList.toggle('hidden')
+        muteBtn[1].classList.toggle('hidden')
     } else {
+        muteBtn[0].classList.toggle('hidden')
+        muteBtn[1].classList.toggle('hidden')
         audioPlayer.volume = 0
-        volumeLevelBar.style.width = ''
     }
 }
 
 //Toggles play state
-function togglePlayState(playState = !playState) {
-
-    if (playState === true) {
+function togglePlayState(newState) {
+    playState = !playState
+    if (newState === true) {
         playBtn.classList.add('hidden')
         pauseBtn.classList.remove('hidden')
-    }
+        setCoverState()
+    } 
     else {
         playBtn.classList.remove('hidden')
         pauseBtn.classList.add('hidden')
+        setCoverState()
     }
+    
+    return playState
 }
 
 //Updates over time the music/track progress
@@ -114,8 +128,8 @@ audioPlayer.ontimeupdate = () => {
 }
 
 //Toggles the rotation of the track cover
-function coverSetState() {
-    return playState ? audioCover.classList.remove('paused') : audioCover.classList.add('paused')
+function setCoverState() {
+    audioCover.classList.toggle('paused')
 }
 
 //Resets the audio progress bar
