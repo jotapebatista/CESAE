@@ -17,7 +17,8 @@ class User {
 
 async function getUserData() {
     try {
-        const response = await fetch('https://randomuser.me/api/?results=5')
+        userQty = prompt('Users:')
+        const response = await fetch(`https://randomuser.me/api/?results=${userQty}`)
         const data = await response.json()
 
         data.results.forEach(function (user) {
