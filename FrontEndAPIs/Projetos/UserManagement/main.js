@@ -79,8 +79,10 @@ getUserData()
 function addElement() {
     // create Elements
     //Main card div
-    const newDiv = document.createElement("div");
-    newDiv.classList.add("grid-item")
+    const mainUl = document.createElement("ul")
+    mainUl.classList.add("users-grid")
+    const liItem = document.createElement("li");
+    liItem.classList.add("grid-item")
 
     //Elements within card div
     const userAvatar = document.createElement("img");
@@ -105,17 +107,15 @@ function addElement() {
     
 
     // add all the elements to the document
-
-    newDiv.appendChild(userAvatar);
-    newDiv.appendChild(userFullName)
-    newDiv.appendChild(userEmail)
-    newDiv.appendChild(userPhone)
-    newDiv.appendChild(userAge)
-    newDiv.appendChild(userNationality)
-    newDiv.appendChild(userAddress)
+    mainUl.append()
+    liItem.appendChild(userAvatar);
+    liItem.appendChild(userFullName)
+    liItem.appendChild(userEmail)
+    liItem.appendChild(userPhone)
+    liItem.appendChild(userAge)
+    liItem.appendChild(userNationality)
+    liItem.appendChild(userAddress)
   
     // add the newly created element and its content into the DOM
-    const currentDiv = document.querySelector("div");
-    console.log(currentDiv, newDiv);
-    document.body.append(newDiv);
+    document.body.appendChild(liItem);
   }
