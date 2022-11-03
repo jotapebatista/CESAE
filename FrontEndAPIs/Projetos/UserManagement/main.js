@@ -17,8 +17,10 @@ class User {
 
 async function getUserData() {
     try {
-        userQty = prompt('Users:')
-        const response = await fetch(`https://randomuser.me/api/?results=${userQty}`)
+        // userQty = prompt('Users:')
+        // const response = await fetch(`https://randomuser.me/api/?results=${userQty}`)
+        const response = await fetch('https://randomuser.me/api/?results=5')
+        
         const data = await response.json()
 
         data.results.forEach(function (user) {
@@ -65,12 +67,55 @@ async function getUserData() {
             gridElement[i].children[4].children[0].textContent = `${dateStr}`
         }
 
-
-
-
+addElement()
     } catch (error) {
         console.error(error) // from creation or business logic
     }
 }
 
 getUserData()
+
+
+function addElement() {
+    // create Elements
+    //Main card div
+    const newDiv = document.createElement("div");
+    newDiv.classList.add("grid-item")
+
+    //Elements within card div
+    const userAvatar = document.createElement("img");
+    const userFullName = document.createElement("h3")
+    const userEmail = document.createElement("p")
+    const userPhone = document.createElement("p")
+    const userDob = document.createElement("p")
+    const userAge = document.createElement("p")
+    const userNationality = document.createElement("p")
+    const userAddress = document.createElement("p")
+    
+    // Content
+    
+    userAvatar.src = '#'
+    userFullName.textContent = "NAME HERE"
+    userEmail.textContent = "email@example.com"
+    userPhone.textContent = '915345321'
+    userDob.textContent = '915345321'
+    userAge.textContent = '100'
+    userNationality.textContent = 'Portuguese'
+    userAddress.textContent = 'Rua das Couves'
+    
+
+    // add all the elements to the document
+
+    newDiv.appendChild(userAvatar);
+    newDiv.appendChild(userFullName)
+    newDiv.appendChild(userEmail)
+    newDiv.appendChild(userPhone)
+    newDiv.appendChild(userAge)
+    newDiv.appendChild(userNationality)
+    newDiv.appendChild(userAddress)
+  
+    // add the newly created element and its content into the DOM
+    const currentDiv = document.querySelector("div");
+    console.log(currentDiv, newDiv);
+    document.body.append(newDiv);
+  }
