@@ -1,6 +1,8 @@
 import { fetchPokemons } from './fetchApi.js'
+import  { searchPoke } from './searchPokemon.js'
 
-let nPokemons = prompt("How many?")
-await fetchPokemons(nPokemons)
+//await fetchPokemons(10)
+
+searchPoke
 
 

@@ -10,7 +10,7 @@ person_form_element.onsubmit = submitHandler
 //Eventos - Ações
 function submitHandler(evt) {
   // 1
-  evt.preventDefault();
+  evt.preventDefault()
   
   // 2
   //console.log(this) -> a palavra chave this representa o formulário
