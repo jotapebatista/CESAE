@@ -6,9 +6,10 @@ import { fetchPokemons } from "./fetchApi";
 const searchPoke = document.querySelector("form")
 
 searchPoke.onsubmit = (evt) => {
-    evt.preventDefault();
+    evt.preventDefault()
     let value = evt.target[0].value
     fetchPokemons(value)
+    evt.target.reset()
 }
 
 export { searchPoke }
