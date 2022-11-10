@@ -1,44 +1,43 @@
 import { Pokemon } from './pokemon.js'
-import { drawPokeElement } from './drawPoke.js'
 
-const fetchPokemons = async (fetchPoke) => {
+async function fetchOldPokemons(fetchPoke) {
     try {
-        console.log(typeof fetchPoke)
         if (typeof fetchPoke === 'number') {
-            for (let i = 1; i <= fetchPoke; i++) {
-                console.log(i)
-                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
-                console.log(checkStatus(response)) //TODO: validate response status 
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${fetchPoke}`)
+            if (response.status === 200) {
                 const { id, name, sprites, types, stats } = await response.json() // destructure of the data response
                 const pokemon = new Pokemon(id, name, types[0].type.name, sprites.front_default)
-                await drawPokeElement(pokemon)
+                sessionStorage.setItem('pokemon', JSON.stringify(pokemon))
+                return pokemon
+            }
+        } else if (typeof fetchPoke === 'string') {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${fetchPoke}`)
+            if (response.status === 200) {
+                const { id, name, sprites, types, stats } = await response.json() // destructure of the data response
+                const pokemon = new Pokemon(id, name, types[0].type.name, sprites.front_default)
+                sessionStorage.setItem('pokemon', JSON.stringify(pokemon))
+                return pokemon
             }
         } else {
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${fetchPoke}`)
-            const { id, name, sprites, types, stats } = await response.json() // destructure of the data response
-            const pokemon = new Pokemon(id, name, types[0].type.name, sprites.front_default)
-            await drawPokeElement(pokemon)
+            alert("Ooops! Something went wrong")
         }
     } catch (error) {
         console.warn(error)
     }
-
 }
 
+async function fetchPokemons(fetchPoke) {
+    try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${fetchPoke}`)
+        const { id, name, sprites, types, stats } = await response.json() // destructure of the data response
+        const pokemon = new Pokemon(id, name, types[0].type.name, sprites.front_default)
+        sessionStorage.setItem(`${id}`, JSON.stringify(pokemon))
+        return pokemon
 
-function checkStatus (response) {
-    if (response.status >= 200 && response.status < 300) {
-      return response
+    } catch (error) {
+        console.warn(error)
     }
-    else { 
-      // Now any response code > 299 should add your HTML message *and* throw an error.
-      document.getElementById("warning-msg").innerHTML = "Message not sent.";
- 
-      var error = new Error(response.statusText)
-      error.response = response
-      throw error
-    }
-  }  
+}
 
 
 export { fetchPokemons }

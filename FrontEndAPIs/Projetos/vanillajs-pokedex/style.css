@@ -25,14 +25,14 @@ body {
   flex-wrap: wrap;
 }
 
-.pokemon-menu img{
+.pokemon-menu img {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 40%;
 }
 
-.pokemon-menu .img-logo{
+.pokemon-menu .img-logo {
   width: 40%;
 }
 
@@ -44,7 +44,7 @@ body {
 
 .searchTerm {
   width: 100%;
-  border: 3px solid ;
+  border: 3px solid;
   border-right: none;
   padding: 5px;
   height: 20px;
@@ -54,7 +54,7 @@ body {
 
 }
 
-.searchTerm:focus{
+.searchTerm:focus {
   color: whitesmoke;
 }
 
@@ -70,7 +70,7 @@ body {
   font-size: 20px;
 }
 
-.wrap{
+.wrap {
   width: 40%;
   position: relative;
   left: 55%;
@@ -131,4 +131,26 @@ h1 {
 
 .pokemon .type {
   text-transform: capitalize;
+}
+
+.pokeModal {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  border-radius: 20px;
+  padding: 30px 30px 70px;
+}
+
+button.close {
+  width: 30px;
+  font-size: 20px;
+  color: #c0c5cb;
+  align-self: flex-end;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 10px;
 }
