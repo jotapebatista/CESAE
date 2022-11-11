@@ -1,4 +1,4 @@
-async function drawPokeElement(poke) {
+function drawPokeElement(poke) {
     const newPokeDiv = document.createElement("div")
     newPokeDiv.classList.add("pokemon")
     
@@ -13,7 +13,7 @@ async function drawPokeElement(poke) {
         <button>View Info</button>
     </div>`
     
-document.body.appendChild(newPokeDiv)
+    return newPokeDiv
 }
 
 export { drawPokeElement }
