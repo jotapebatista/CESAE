@@ -1,10 +1,12 @@
+export { drawPokeElement }
+
 function drawPokeElement(poke) {
 
-    const newPokeDiv = document.createElement("div")
-    newPokeDiv.classList.add("pokemon")
+  const newPokeDiv = document.createElement("div")
+  newPokeDiv.classList.add("pokemon")
 
-    newPokeDiv.innerHTML =
-        `<div class="img-container">
+  newPokeDiv.innerHTML =
+    `<div class="img-container">
             <img src="${poke.sprites}" alt="${poke.name}" />
     </div>
     <div class="info">
@@ -14,67 +16,72 @@ function drawPokeElement(poke) {
         <button class="info-button">View Info</button>
     </div>`
 
-    const infoButton = newPokeDiv.querySelector('.info-button')
+  document.body.append(newPokeDiv)
 
+  const infoButton = newPokeDiv.querySelector('.info-button')
     infoButton.onclick = () => {
         const newPokeModal = document.createElement("div")
+        newPokeModal.classList.add("poke-modal-info")
         newPokeModal.innerHTML =
             `
-            <dialog class="poke-modal">
-            <button class="close">✖</button>
-    <div class="img-container">
-        <img src="${poke.sprites}" alt="${poke.name}" />
-    </div>
-    <div class="info">
-        <h3 class="name">${poke.name}</h3>
-        <table>
-            <tr>
-                <td>Health</td>
-                <td>
+              <dialog class="poke-modal">
+              <button class="close">✖</button>
+              <div class="img-container">
+                  <img src="${poke.sprites}" alt="${poke.name}" />
+              </div>
+              <div class="info">
+              <h3 class="name">${poke.name}</h3>
+              <table-->
+                <tr>
+                  <td>Health (${poke.stats[0].base_stat})</td>
+                  <td>
                     <div class="stat-width" style="width: ${poke.stats[0].base_stat}%;"></div>
-                </td>
-            </tr>
-            <tr>
-                <td>Attack</td>
-                <td>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Attack (${poke.stats[1].base_stat})</td>
+                  <td>
                     <div class="stat-width" style="width: ${poke.stats[1].base_stat}%;"></div>
-                </td>
-            </tr>
-            <tr>
-                <td>Defense</td>
-                <td>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Defense (${poke.stats[2].base_stat})</td>
+                  <td>
                     <div class="stat-width" style="width: ${poke.stats[2].base_stat}%;"></div>
-                </td>
-            </tr>
-            <tr>
-                <td>Special Attack</td>
-                <td>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Special Attack (${poke.stats[3].base_stat})</td>
+                  <td>
                     <div class="stat-width" style="width: ${poke.stats[3].base_stat}%;"></div>
-                </td>
-            </tr>
-            <tr>
-                <td>Sepecial Defense</td>
-                <td>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sepecial Defense (${poke.stats[4].base_stat})</td>
+                  <td>
                     <div class="stat-width" style="width: ${poke.stats[4].base_stat}%;"></div>
-                </td>
-            </tr>
-            <tr>
-                <td>Speed</td>
-                <td>
-                    <div class="stat-width" style="width: ${poke.stats[4].base_stat}%;"></div>
-                </td>
-            </tr>
-        </table>
-            </dialog>
-        `
-        newPokeDiv.append(newPokeModal)
+                  </td>
+                </tr>
+                <tr>
+                  <td>Speed (${poke.stats[5].base_stat})</td>
+                  <td>
+                    <div class="stat-width" style="width: ${poke.stats[5].base_stat}%;"></div>
+                  </td>
+                </tr>
+              </table->
+              </div>
+          </dialog>
+          `
+
+        if (newPokeDiv.childNodes[3] == null) newPokeDiv.append(newPokeModal)
+
         const modal = newPokeDiv.querySelector('.poke-modal')
-        console.log(modal)
         modal.showModal()
+        const closeButton = newPokeModal.querySelector('.close')
+        closeButton.onclick = () => {
+            modal.close()
+        }
     }
 
 
-    return newPokeDiv
 }
-
-export { drawPokeElement }

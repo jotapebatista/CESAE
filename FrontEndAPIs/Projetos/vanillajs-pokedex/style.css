@@ -147,10 +147,13 @@ button.close:hover {
 
 .poke-modal{
   border-radius: 10px;
+  width: 20%;
 }
 
 .stat-width{
+  margin: 5px;
   height: 15px;
   border-radius: 10px;
   background-color: white;
+  max-width: 100%;
 }
