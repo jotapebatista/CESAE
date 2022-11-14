@@ -7,9 +7,6 @@ class Pokemon {
         this.stats = stats
     }
 
-    getPokemonInfo(){
-        return [this.id, this.name, this.type, this.sprites]
-    }
 }
 
 export { Pokemon }

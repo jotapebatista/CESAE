@@ -32,9 +32,6 @@ body {
   width: 40%;
 }
 
-.pokemon-menu .img-logo {
-  width: 40%;
-}
 
 .search {
   width: 80%;
@@ -102,9 +99,10 @@ h1 {
 }
 
 .pokemon .img-container {
-  width: 120px;
-  height: 120px;
-  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 .pokemon .img-container img {
@@ -116,7 +114,7 @@ h1 {
   margin-top: 10px;
 }
 
-.pokemon .number {
+ .number {
   background-color: rgba(60, 60, 60, 0.5);
   border-radius: 10px;
   font-size: 0.8em;
@@ -133,18 +131,6 @@ h1 {
   text-transform: capitalize;
 }
 
-.pokeModal {
-  width: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  color: #000;
-  text-align: center;
-  border-radius: 20px;
-  padding: 30px 30px 70px;
-}
-
 button.close {
   width: 30px;
   font-size: 20px;
@@ -155,48 +141,16 @@ button.close {
   margin-bottom: 10px;
 }
 
-.loading-div {
-  position:   fixed;
-  z-index:    1;
-  top:        0;
-  left:       0;
-  height:     100%;
-  width:      100%;
-  background: rgba(255, 255, 255, 0.4)
-  50% 50%
-  no-repeat;
-}
-body.loading {
-  overflow: hidden;
-}
-body.loading .loading-div {
-  display: block;
+button.close:hover {
+  color: #0070cc;
 }
 
-.lds-dual-ring {
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  top: 35%;
-  left: 50%;
+.poke-modal{
+  border-radius: 10px;
 }
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid #fff;
-  border-color: #fff transparent #fff transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
 
-}
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.stat-width{
+  height: 15px;
+  border-radius: 10px;
+  background-color: white;
 }
