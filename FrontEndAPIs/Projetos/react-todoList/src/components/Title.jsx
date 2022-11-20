@@ -3,6 +3,8 @@ import { useState } from 'react'
 function Title({ text }) {
   const [name, setName] = useState('')
 
+
+  //Renders while tiping
   // const handleChange = (evt) => {
   //   setName(evt.target.value)
   //   console.log(evt)
