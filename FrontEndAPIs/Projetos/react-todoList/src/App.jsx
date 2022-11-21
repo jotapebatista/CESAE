@@ -1,17 +1,17 @@
 import './App.css'
 import Title from "./components/Title"
-import TodoList from './components/TodoList'
-import ToDoList from './components/EnterTask'
+import InputNewTask from './components/TodoAdd'
+
+
 
 function App() {
   return (
     <div className="App">
       <header>
-        {/* <Title /> */}
+        <Title />
       </header>
       <main>
-        <TodoList />
-        {/* <TodoList /> */}
+        <InputNewTask />
       </main>
     </div>
   )
