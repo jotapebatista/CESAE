@@ -11,7 +11,7 @@ export default function NewTask() {
         console.log(task.map((value, index) => console.log(value)))
         ev.preventDefault()
         setTask([...task, {
-            value: input,
+            value: input, 
             status: false
         }])
     }
