@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-function Title({ text }) {
+export default function Title({ text }) {
   const [name, setName] = useState('')
 
   //Renders while tiping
@@ -9,17 +9,17 @@ function Title({ text }) {
   //   console.log(evt)
   // }
 
+  // Renders on Enter key
   const enterKey = (evt) => {
     if (evt.key === 'Enter') {
       setName(evt.target.value)
     }
   }
   return (
+
     <div>
-      <h1>{!name ? 'Input your name': `${name} - To-do List`}</h1>
-      <input onKeyDown={enterKey} />
+      <h1>{!name ? 'Type your name to start' : `${name} - To-do List`}</h1>
+      <input onKeyDown={enterKey} placeholder="ex. João" />
     </div>
   )
 }
-
-export default Title

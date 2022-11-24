@@ -1,17 +1,26 @@
 import './App.css'
 import Title from "./components/Title"
-import InputNewTask from './components/TodoAdd'
-
-
+import NewTask from './components/NewTask'
+import Clock from './components/Clock'
+import TaskList from './components/TaskList'
+import Task from './components/Task'
+import CheckBox from './components/CheckBox'
+import { useState } from 'react'
 
 function App() {
+
+  
+
   return (
-    <div className="App">
+    <div>
       <header>
+        <Clock />
         <Title />
+        <hr />
       </header>
       <main>
-        <InputNewTask />
+        <NewTask /> 
+       
       </main>
     </div>
   )
