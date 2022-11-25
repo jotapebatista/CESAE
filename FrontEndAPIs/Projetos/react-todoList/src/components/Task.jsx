@@ -1,14 +1,13 @@
 import CheckBox from "./CheckBox"
 
-export default function Task(name, key) {
-
-   console.log(name)
-   console.log(key)
+export default function Task({ name, index }) {
 
     return (
         <div className="task">
             <CheckBox />
-            <p>{name}</p>
+            {name}
+            <button>edit</button>
+            <button>delete</button>
         </div>
 
     )

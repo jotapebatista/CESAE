@@ -9,8 +9,6 @@ import { useState } from 'react'
 
 function App() {
 
-  
-
   return (
     <div>
       <header>
@@ -20,7 +18,6 @@ function App() {
       </header>
       <main>
         <NewTask /> 
-       
       </main>
     </div>
   )
