@@ -17,7 +17,7 @@ export default function NewTask() {
 
     function handleSubmit(ev) {
         ev.preventDefault()
-        setNewTask('')
+        
         if(!newTask){
             MySwal.fire({
                 title: <strong>Oops!</strong>,
@@ -25,18 +25,19 @@ export default function NewTask() {
                 icon: 'warning'
               })
         }else{
+            setNewTask('')
             setItemsList([...itemsList, newTask]);
         
     }}
+    
     return (
-        <div className="todoListMain">
+        <div className="todo-app-main">
             <form onSubmit={handleSubmit}>
                 <input type="text" name="new-task" placeholder="New Task please" onChange={handleChange} />
                 <button onClick={handleSubmit}>Create</button>
             </form>
             {itemsList.map((item) => ( 
                     <Task key={item} name={item} />
-                    
                 ))}
         </div>
     )
