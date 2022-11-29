@@ -1,13 +1,11 @@
 import { useState } from "react"
 
-export default function CheckBox(props, { defaultChecked = false }) {
+export default function CheckBox({ defaultChecked = false, setChildValue }) {
   const [checked, setChecked] = useState(defaultChecked)
 
   function handleClick() {
     setChecked(prevCheck => !prevCheck)
-    defaultChecked= !defaultChecked
-    console.log(defaultChecked)
-    !checked ? console.log('Checked') : console.log('Unchecked')
+    !checked ? setChildValue(true) : setChildValue(false)
   }
 
   return (
