@@ -11,11 +11,15 @@ export default function NewTask() {
     const [itemsList, setItemsList] = useState([])
 
     function removeItem(todoId){
-        console.log(todoId)
-       
+        MySwal.fire({
+            title: <strong>Delete task?</strong>,
+            html: <i>Are you sure you want to delete?</i>,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sure'
+        })
         const deleteItem = itemsList.filter((item, idx) => idx !== todoId)
-        setItemsList([...deleteItem]) 
-        console.log(deleteItem)
+        setItemsList([...deleteItem])
     }
 
     const handleChange = (event) => {
